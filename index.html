@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercuri — Atendimento inteligente para clínicas</title>
+  <meta name="description" content="O Mercuri organiza as mensagens da sua clínica no WhatsApp, coleta dados do paciente com IA e direciona para o atendente certo automaticamente." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6c8fff;
+      --accent-dim: rgba(108,143,255,0.12);
+      --dark: #0c0c10;
+      --dark-2: #18181c;
+      --dark-3: #111114;
+      --text-light: #f0f0f4;
+      --text-muted: rgba(240,240,244,0.5);
+      --text-dim: rgba(240,240,244,0.3);
+      --border-dark: rgba(255,255,255,0.07);
+      --text-body: #1a1a1a;
+      --text-secondary: #5a5a6a;
+      --text-tertiary: #7a7a8a;
+      --bg-light: #f8f8fb;
+      --border-light: #eeeef4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-body);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; }
+
+    /* ── Nav ─────────────────────────────────────────────── */
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,16,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .nav-logo-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: -0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text-light); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ── Hero ────────────────────────────────────────────── */
+
+    .hero {
+      background: var(--dark);
+      padding: 80px 40px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(108,143,255,0.12);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(108,143,255,0.2);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    /* ── Mockup ──────────────────────────────────────────── */
+
+    .hero-screen {
+      margin: 48px auto 0;
+      max-width: 700px;
+      background: var(--dark-2);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+    }
+
+    .screen-bar {
+      background: var(--dark-3);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    .screen-body {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      height: 280px;
+    }
+
+    .screen-sidebar {
+      background: var(--dark-3);
+      border-right: 1px solid var(--border-dark);
+      padding: 16px 12px;
+    }
+
+    .sidebar-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 0 8px;
+      margin-bottom: 10px;
+    }
+
+    .queue-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .queue-item.active {
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+    }
+
+    .queue-badge {
+      margin-left: auto;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .screen-chat {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .chat-msg {
+      max-width: 75%;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-light);
+    }
+
+    .chat-msg.in {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 2px 10px 10px 10px;
+      align-self: flex-start;
+    }
+
+    .chat-msg.bot {
+      background: rgba(251,191,36,0.08);
+      border: 1px solid rgba(251,191,36,0.15);
+      color: #fde68a;
+      border-radius: 10px 2px 10px 10px;
+      align-self: flex-end;
+    }
+
+    .bot-label {
+      font-size: 10px;
+      color: rgba(251,191,36,0.5);
+      text-align: right;
+      margin-bottom: 3px;
+    }
+
+    .chat-msg.out {
+      background: var(--accent);
+      border-radius: 10px 2px 10px 10px;
+      align-self: flex-end;
+    }
+
+    .summary-chip {
+      align-self: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 11px;
+      color: rgba(240,240,244,0.5);
+      line-height: 1.8;
+    }
+
+    /* ── Seções ──────────────────────────────────────────── */
+
+    .section {
+      padding: 80px 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .section-lead {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    /* ── Features ────────────────────────────────────────── */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .feature {
+      background: var(--bg-light);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 22px;
+      transition: border-color 0.15s;
+    }
+
+    .feature:hover { border-color: #c8c8d8; }
+
+    .feature-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--accent-dim);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .feature-icon svg { width: 20px; height: 20px; }
+
+    .feature h3 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.65;
+    }
+
+    /* ── Como funciona ───────────────────────────────────── */
+
+    .flow-section {
+      background: var(--bg-light);
+      padding: 80px 40px;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .flow-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 8px;
+      margin-top: 44px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 24px 16px;
+      position: relative;
+    }
+
+    .step::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: 36px;
+      width: 8px;
+      height: 8px;
+      border-top: 1.5px solid #c8c8d8;
+      border-right: 1.5px solid #c8c8d8;
+      transform: rotate(45deg);
+    }
+
+    .step:last-child::after { display: none; }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      background: var(--dark);
+      color: var(--text-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      margin: 0 auto 14px;
+    }
+
+    .step h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      line-height: 1.65;
+    }
+
+    /* ── Depoimento ──────────────────────────────────────── */
+
+    .testimonial {
+      padding: 80px 40px;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .testimonial blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--dark);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+
+    .testimonial cite {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      font-style: normal;
+    }
+
+    /* ── CTA final ───────────────────────────────────────── */
+
+    .final-cta {
+      background: var(--dark);
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      color: var(--text-light);
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .final-cta h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .final-cta p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+
+    footer {
+      background: #080810;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+
+    @media (max-width: 640px) {
+      .nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px 0; }
+      .section { padding: 56px 20px; }
+      .flow-section { padding: 56px 20px; }
+      .testimonial { padding: 56px 20px; }
+      .final-cta { padding: 56px 20px; }
+      footer { padding: 24px 20px; }
+      .screen-body { grid-template-columns: 120px 1fr; }
+      .step::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">M</div>
+      <span class="nav-logo-text">Mercuri</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="#contato" class="nav-cta">Fale conosco</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="eyebrow">Atendimento inteligente para clínicas</div>
+    <h1>Seu WhatsApp atende.<br><em>Você cuida.</em></h1>
+    <p class="hero-sub">O Mercuri organiza as mensagens da sua clínica, coleta dados do paciente com IA e direciona para o atendente certo — automaticamente.</p>
+    <a href="#como-funciona" class="btn-primary">
+      Ver como funciona
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+
+    <div class="hero-screen">
+      <div class="screen-bar">
+        <div class="dot" style="background:#f87171"></div>
+        <div class="dot" style="background:#fbbf24"></div>
+        <div class="dot" style="background:#4ade80"></div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-sidebar">
+          <div class="sidebar-label">Filas</div>
+          <div class="queue-item active">📋 Todas <span class="queue-badge" style="background:#f87171"></span></div>
+          <div class="queue-item">🩺 Consultas <span class="queue-badge" style="background:#60a5fa"></span></div>
+          <div class="queue-item">🔬 Exames</div>
+          <div class="queue-item">💳 Financeiro <span class="queue-badge" style="background:#4ade80"></span></div>
+        </div>
+        <div class="screen-chat">
+          <div class="chat-msg in">Olá, gostaria de agendar uma consulta</div>
+          <div style="align-self:flex-end">
+            <div class="bot-label">🤖 Bot IA</div>
+            <div class="chat-msg bot">Olá! Pode me dizer seu nome completo?</div>
+          </div>
+          <div class="chat-msg in">Maria Silva</div>
+          <div style="align-self:flex-end">
+            <div class="bot-label">🤖 Bot IA</div>
+            <div class="chat-msg bot">Qual especialidade você precisa, Maria?</div>
+          </div>
+          <div class="chat-msg in">Cardiologista, convênio Unimed</div>
+          <div class="summary-chip">📋 Resumo coletado pela IA<br>👤 Maria Silva · Cardiologia · Unimed<br>→ Encaminhado para fila de Consultas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section class="section" id="recursos">
+    <div class="section-label">Recursos</div>
+    <h2>Tudo que sua clínica<br>precisa <em>em um lugar só</em></h2>
+    <p class="section-lead">Do primeiro "olá" até o atendimento finalizado — o Mercuri cuida do fluxo para que sua equipe foque no que importa.</p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3>Bot IA por fila</h3>
+        <p>Coleta nome, convênio, especialidade e data antes de chamar o atendente — em linguagem natural.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"/></svg>
+        </div>
+        <h3>Filas separadas</h3>
+        <p>Consultas, exames e financeiro em filas distintas. Cada agente vê só o que é seu.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/></svg>
+        </div>
+        <h3>Etiquetas</h3>
+        <p>Marque conversas por urgência, convênio ou tipo de atendimento com um clique.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        </div>
+        <h3>Dado de saúde seguro</h3>
+        <p>Banco em São Paulo, isolamento entre clínicas e conformidade com a LGPD.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </div>
+        <h3>Transferência entre filas</h3>
+        <p>Transfira o paciente para outra equipe sem vazar o histórico clínico.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>
+        </div>
+        <h3>Resumo automático</h3>
+        <p>O atendente recebe um resumo estruturado antes mesmo de dizer olá.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section class="flow-section" id="como-funciona">
+    <div class="flow-inner">
+      <div class="section-label">Como funciona</div>
+      <h2>Do WhatsApp ao atendente<br><em>em segundos</em></h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Paciente manda mensagem</h4>
+          <p>Qualquer mensagem no WhatsApp da clínica cai no Mercuri.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Menu interativo</h4>
+          <p>O paciente escolhe entre Consultas, Exames ou Financeiro.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Bot IA coleta dados</h4>
+          <p>A IA conversa naturalmente e extrai as informações necessárias.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Atendente assume</h4>
+          <p>Recebe o resumo completo e já sabe tudo antes de responder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimento -->
+  <section class="testimonial">
+    <blockquote>"Antes perdia mensagem toda hora. Agora cada paciente vai para o atendente certo, com todas as informações. A recepção mudou completamente."</blockquote>
+    <cite>Dra. Fernanda Alves — Clínica Alves, São Paulo</cite>
+  </section>
+
+  <!-- CTA final -->
+  <section class="final-cta" id="contato">
+    <h2>Pronto para <em>organizar</em><br>seu atendimento?</h2>
+    <p>Fale com a gente e veja o Mercuri funcionando na sua clínica.</p>
+    <a href="https://wa.me/5517999990000" class="btn-primary">
+      Falar no WhatsApp
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="nav-logo">
+      <div class="nav-logo-mark">M</div>
+      <span class="nav-logo-text">Mercuri</span>
+    </div>
+    <p>© 2026 Mercuri. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
