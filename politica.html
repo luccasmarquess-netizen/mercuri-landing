@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidade — Mercuri</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #6c8fff;
+      --dark: #0c0c10;
+      --text: #1a1a1a;
+      --text-secondary: #5a5a6a;
+      --bg-light: #f8f8fb;
+      --border: #eeeef4;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.75; color: var(--text); background: #fff; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px; background: rgba(12,12,16,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .nav-logo-mark img { width: 28px; height: 28px; border-radius: 7px; }
+    .nav-logo-text { font-size: 16px; font-weight: 500; color: #f0f0f4; }
+    .nav-back { color: rgba(240,240,244,0.5); font-size: 14px; text-decoration: none; transition: color 0.15s; }
+    .nav-back:hover { color: #f0f0f4; }
+
+    .hero {
+      background: var(--dark); padding: 60px 40px 48px; text-align: center;
+    }
+    .hero-label { font-size: 12px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 16px; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; color: #f0f0f4; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .hero-date { font-size: 13px; color: rgba(240,240,244,0.4); }
+
+    .content { max-width: 760px; margin: 0 auto; padding: 56px 40px 80px; }
+
+    h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--dark); margin: 40px 0 12px; }
+    h3 { font-size: 15px; font-weight: 500; color: var(--dark); margin: 24px 0 8px; }
+    p { color: var(--text-secondary); margin-bottom: 14px; }
+    ul { margin: 0 0 16px 20px; }
+    li { color: var(--text-secondary); margin-bottom: 6px; }
+    a { color: var(--accent); }
+
+    .highlight {
+      background: var(--bg-light); border-left: 3px solid var(--accent);
+      padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 24px 0;
+    }
+    .highlight p { margin: 0; color: var(--text); font-size: 14px; }
+
+    .divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+    .suboperators { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+    .suboperators th { background: var(--bg-light); padding: 10px 14px; text-align: left; font-weight: 500; color: var(--dark); border-bottom: 1px solid var(--border); }
+    .suboperators td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+
+    footer { background: var(--dark); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 13px; color: rgba(240,240,244,0.3); }
+    footer a { color: rgba(240,240,244,0.4); font-size: 13px; text-decoration: none; }
+    footer a:hover { color: rgba(240,240,244,0.7); }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 40px 20px 32px; }
+      .content { padding: 36px 20px 60px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="/favicon.svg" alt="Mercuri" class="nav-logo-mark" />
+      <span class="nav-logo-text">Mercuri</span>
+    </a>
+    <a href="/" class="nav-back">← Voltar ao site</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-label">Documento legal</div>
+    <h1>Política de Privacidade</h1>
+    <div class="hero-date">Última atualização: junho de 2026 — Versão 1.0</div>
+  </div>
+
+  <div class="content">
+
+    <div class="highlight">
+      <p>O Mercuri é uma plataforma de atendimento via WhatsApp. Atuamos como <strong>operadores de dados</strong> em nome das clínicas que utilizam nosso sistema. Esta política explica como tratamos os dados pessoais processados pela plataforma.</p>
+    </div>
+
+    <h2>1. Quem somos</h2>
+    <p>O Mercuri é desenvolvido e operado por <strong>[Nome do desenvolvedor / empresa]</strong>, CNPJ <strong>[número]</strong>. Para fins da LGPD (Lei nº 13.709/2018), atuamos como <strong>operadores</strong> dos dados pessoais, processando informações em nome das clínicas e revendedores que contratam nossos serviços (os controladores).</p>
+    <p>As clínicas que utilizam o Mercuri são as <strong>controladoras</strong> dos dados de seus pacientes e são responsáveis pelas decisões sobre o tratamento dessas informações.</p>
+
+    <div class="divider"></div>
+
+    <h2>2. Quais dados coletamos</h2>
+
+    <h3>Dados dos pacientes (via WhatsApp)</h3>
+    <ul>
+      <li>Nome completo</li>
+      <li>Número de telefone (WhatsApp)</li>
+      <li>Informações de saúde fornecidas voluntariamente durante o atendimento (especialidade desejada, tipo de exame, convênio)</li>
+      <li>Histórico de conversas com a clínica</li>
+    </ul>
+
+    <h3>Dados dos agentes e supervisores</h3>
+    <ul>
+      <li>Nome e endereço de e-mail</li>
+      <li>Senha (armazenada exclusivamente como hash bcrypt — nunca em texto simples)</li>
+      <li>Registro de acessos e ações no sistema (logs de auditoria)</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>3. Para que usamos os dados</h2>
+    <ul>
+      <li>Prestação do serviço de atendimento automatizado e humano via WhatsApp</li>
+      <li>Roteamento de mensagens para a equipe correta da clínica</li>
+      <li>Geração de resumos de atendimento para os agentes por IA</li>
+      <li>Relatórios gerenciais para supervisores das clínicas</li>
+      <li>Segurança e melhoria contínua do sistema</li>
+    </ul>
+    <p><strong>Não vendemos, compartilhamos ou utilizamos dados pessoais de pacientes para fins de marketing ou publicidade.</strong></p>
+
+    <div class="divider"></div>
+
+    <h2>4. Base legal para o tratamento</h2>
+    <p>O tratamento de dados pessoais é realizado com base nos seguintes fundamentos da LGPD:</p>
+    <ul>
+      <li><strong>Art. 7º, V</strong> — Execução de contrato: para prestação do serviço contratado pela clínica</li>
+      <li><strong>Art. 7º, II</strong> — Cumprimento de obrigação legal ou regulatória</li>
+      <li><strong>Art. 11, II, f</strong> — Exercício regular de direitos, para os dados sensíveis de saúde</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>5. Suboperadores e compartilhamento</h2>
+    <p>Os dados são processados pelos seguintes suboperadores necessários à prestação do serviço:</p>
+
+    <table class="suboperators">
+      <thead>
+        <tr><th>Suboperador</th><th>Finalidade</th><th>Localização</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Neon Inc.</td><td>Banco de dados</td><td>São Paulo, Brasil</td></tr>
+        <tr><td>Upstash Inc.</td><td>Fila de mensagens</td><td>São Paulo, Brasil</td></tr>
+        <tr><td>Railway Inc.</td><td>Hospedagem da aplicação</td><td>EUA</td></tr>
+        <tr><td>Groq Inc.</td><td>Processamento de IA</td><td>EUA</td></tr>
+        <tr><td>Meta Platforms Inc.</td><td>WhatsApp Cloud API</td><td>EUA</td></tr>
+      </tbody>
+    </table>
+
+    <p>Todos os suboperadores são contratados mediante cláusulas adequadas de proteção de dados. Para transferências internacionais (Railway, Groq, Meta), são aplicadas salvaguardas compatíveis com a LGPD.</p>
+
+    <div class="divider"></div>
+
+    <h2>6. Segurança dos dados</h2>
+    <ul>
+      <li>Criptografia TLS em trânsito e em repouso no banco de dados</li>
+      <li>Isolamento técnico entre clínicas (Row-Level Security no PostgreSQL)</li>
+      <li>Controle de acesso baseado em funções — agentes veem apenas sua fila</li>
+      <li>Registros de auditoria imutáveis de todas as ações no sistema</li>
+      <li>Senhas armazenadas exclusivamente como hash bcrypt (irreversível)</li>
+      <li>Rate limiting nas rotas de autenticação para prevenir ataques de força bruta</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>7. Retenção e exclusão de dados</h2>
+    <p>Os dados são mantidos pelo período necessário à prestação do serviço e por até <strong>5 anos</strong> após o encerramento do contrato, para cumprimento de obrigações legais. Após esse prazo, os dados são excluídos de forma segura e irreversível.</p>
+    <p>A clínica controladora pode solicitar a exclusão antecipada dos dados de seus pacientes a qualquer momento, mediante solicitação formal por e-mail.</p>
+
+    <div class="divider"></div>
+
+    <h2>8. Direitos dos titulares</h2>
+    <p>Os pacientes (titulares dos dados) podem exercer os seguintes direitos previstos na LGPD, mediante solicitação à clínica responsável pelo atendimento:</p>
+    <ul>
+      <li>Confirmação da existência do tratamento</li>
+      <li>Acesso aos dados</li>
+      <li>Correção de dados incompletos ou incorretos</li>
+      <li>Eliminação dos dados</li>
+      <li>Portabilidade dos dados</li>
+      <li>Informação sobre compartilhamento com terceiros</li>
+      <li>Revogação do consentimento</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>9. Contato</h2>
+    <p>Para questões relacionadas à privacidade e proteção de dados:</p>
+    <ul>
+      <li>E-mail: <a href="mailto:[email]">[email de contato]</a></li>
+      <li>Responsável pelo tratamento de dados (DPO): <strong>[Nome]</strong></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>10. Alterações nesta política</h2>
+    <p>Esta política pode ser atualizada periodicamente. Alterações substanciais serão comunicadas às clínicas com 30 dias de antecedência. A versão mais recente sempre estará disponível nesta página.</p>
+
+    <div class="divider"></div>
+    <p style="font-size: 13px; color: #aaa;">Versão 1.0 — Junho de 2026</p>
+
+  </div>
+
+  <footer>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="/favicon.svg" style="width:24px;height:24px;border-radius:6px;" alt="Mercuri" />
+      <span style="font-size:14px;font-weight:500;color:#f0f0f4;">Mercuri</span>
+    </div>
+    <p>© 2026 Mercuri. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
